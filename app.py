@@ -4,7 +4,11 @@ from db_config.db_connect import get_connection
 
 
 app= Flask(__name__)
-app.secret_key="tanu_udnib_hehe"
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+app.secret_key = os.getenv("SECRET_KEY")
 
 @app.route('/',methods=["GET" , "POST"])
 def index():

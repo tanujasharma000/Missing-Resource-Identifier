@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title%}Resource Report{% endblock %}
+{% block content %}
+<h2 class="mb-4 text-center">Report Missing Resource</h2>
+{% with messages=get_flashed_messages(with_categories=true) %}
+   {%if messages %}
+       {% for category, message in messages %}
+           <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+           {{ message }}
+           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+           </div>
+
+        {% endfor %}
+    {%endif%}
+{%endwith%}
+<form method="POST" action="/" class="bg-white p-4 rounded shadow">
+
+  <div class="mb-3">
+    <label class="form-label">Resource Name</label>
+    <input type="text" name="name" class="form-control" required>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Quantity</label>
+    <input type="number" name="quantity" class="form-control" min="1" required>
+  </div>
+
+  <div class="mb-3">
+  <label class="form-label">Unit</label>
+  <select name="unit" class="form-select" required>
+    <option value="">Select Unit</option>
+    <option value="kg">kg</option>
+    <option value="liters">liters</option>
+    <option value="packets">packets</option>
+    <option value="boxes">boxes</option>
+    <option value="units">units</option>
+    <option value="bottles">bottles</option>
+  </select>
+</div>
+
+  <div class="mb-3">
+    <label class="form-label">Location</label>
+    <input type="text" name="location" class="form-control" required>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Category</label>
+    <select name="category" class="form-select" required>
+      <option value="">Select Category</option>
+      <option value="food">Food</option>
+      <option value="water">Water</option>
+      <option value="medicine">Medicine</option>
+      <option value="shelter">Shelter</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Date</label>
+    <input type="date" name="date" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Reported By</label>
+    <input type="text" name="reported_by" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Contact Info</label>
+    <input type="text" name="contact" class="form-control" required>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Additional Notes</label>
+    <textarea name="notes" class="form-control" rows="3"></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-success w-100">Submit Resource</button>
+</form>
+{% endblock %}
